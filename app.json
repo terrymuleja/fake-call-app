@@ -3,8 +3,12 @@
     "name": "Fake Call",
     "slug": "fake-call-app",
     "plugins": [
+      "./plugins/fix-gradle-wrapper",
       ["expo-notifications", { "icon": "./assets/notification-icon.png" }]
     ],
-    "android": { "useNextNotificationsApi": true }
+    "android": {
+      "package": "com.denudey.fakecallapp",
+      "useNextNotificationsApi": true
+    }
   }
 }
