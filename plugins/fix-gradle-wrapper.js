@@ -3,7 +3,7 @@ const { withDangerousMod, withGradleProperties } = require("@expo/config-plugins
 const fs = require("fs");
 const path = require("path");
 
-// Expo SDK 51/52 are happy with Gradle 8.6/8.7. Avoid newer that trips deprecations.
+// Expo SDK 51 prefers Gradle 8.6/8.7 + Kotlin 1.9.24
 const GRADLE_URL = "https://services.gradle.org/distributions/gradle-8.7-bin.zip";
 
 const withGradleWrapperPin = (config) =>
@@ -22,8 +22,9 @@ const withWindowsFriendlyGradleProps = (config) =>
     const add = (key, value) => cfg.modResults.push({ type: "property", key, value });
     add("org.gradle.jvmargs", "-Xmx4g -Dfile.encoding=UTF-8");
     add("org.gradle.caching", "true");
-    add("org.gradle.daemon", "false");     // avoid zombie daemon file locks on Windows
-    add("org.gradle.vfs.watch", "false");  // prevents watcher lock issues on Windows
+    add("org.gradle.daemon", "false");     // mitigate Windows file locks
+    add("org.gradle.vfs.watch", "false");  // mitigate Windows file locks
+    add("expo.kotlinVersion", "1.9.24");   // <-- force Kotlin 1.9.24
     return cfg;
   });
 
