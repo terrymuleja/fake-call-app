@@ -4,11 +4,21 @@
     "slug": "fake-call-app",
     "plugins": [
       "./plugins/fix-gradle-wrapper",
-      ["expo-notifications", { "icon": "./assets/notification-icon.png" }]
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png"
+        }
+      ]
     ],
     "android": {
       "package": "com.denudey.fakecallapp",
       "useNextNotificationsApi": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f1996779-4963-4cf4-8202-a849aa9c12ac"
+      }
     }
   }
 }
